@@ -22,7 +22,6 @@ def full_survey(
     survey = sample_random_sets(profiles, n_alternatives, n_questions)
     survey = repeat_sets(survey, N)
     survey = add_metadata(survey, N, n_alternatives, n_questions)
-    
     duplicated_observation_rows = get_duplicated_observations(survey, n_alternatives)
     duplicated_response_rows = get_duplicated_response(survey, N)
     

@@ -19,7 +19,13 @@ def restrict_profiles(profiles: pd.DataFrame, restrictors: list) -> pd.DataFrame
             restriction = f"~({column_to_check} == '{value_to_check}')"
         else:
             column_to_check, value_to_check, column_to_filter, operator, threshold = restrictor
-            restriction = f"~(({column_to_check} == '{value_to_check}') & ({column_to_filter} {operator} {threshold}))"
+            if operator == "in":
+                threshold_str = "(" + ", ".join(map(str, threshold)) + ")"
+                restriction = f"~(({column_to_check} == '{value_to_check}') & ({column_to_filter} {operator} {threshold_str}))"
+            elif operator == "=":
+                restriction = f"~(({column_to_check} == '{value_to_check}') & ({column_to_filter} == {threshold}))"
+            else:
+                restriction = f"~(({column_to_check} == '{value_to_check}') & ({column_to_filter} {operator} {threshold}))"
 
         if query_str:
             query_str += " & " + restriction
@@ -28,5 +34,3 @@ def restrict_profiles(profiles: pd.DataFrame, restrictors: list) -> pd.DataFrame
 
     filtered_profiles = profiles.query(query_str)
     return filtered_profiles
-
-

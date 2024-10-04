@@ -11,7 +11,6 @@ def cbc_survey(
         n_questions: int,
         no_choice: bool,
         method: str,
-        prior_no_choice: int = None,
 ):
     if method == "random":
         survey = random_survey(
