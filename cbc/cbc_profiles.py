@@ -34,3 +34,5 @@ def restrict_profiles(profiles: pd.DataFrame, restrictors: list) -> pd.DataFrame
 
     filtered_profiles = profiles.query(query_str)
     return filtered_profiles
+
+

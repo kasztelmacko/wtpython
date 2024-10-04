@@ -41,12 +41,5 @@ restrictors = [
 profiles = generate_profiles(levels, restrictors=restrictors)
 # print(profiles)
 
-survey = cbc_survey(profiles, N = 120, n_alternatives= 3, n_questions= 6, no_choice=True, method="random")
-print(survey)
-
-# print(survey_details.survey_balance(survey))
-
-# print(survey_details.survey_overlap(survey))
-
-results = simulate_choices(survey)
-results.to_csv("choice_results.csv")
+random_survey = cbc_survey(profiles, N = 900, n_alternatives= 3, n_questions= 6, no_choice=True, method="random")
+print(random_survey)
